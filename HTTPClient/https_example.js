@@ -1,6 +1,6 @@
 var https = require('https');
 
-console.log('I did it!');
+// console.log('I did it!');
 
 
 
@@ -12,6 +12,11 @@ var options = {
 // called by https when the request is made.
 var callback = function(response) {
   console.log('In response handler callback!');
+
+  response.on('data', function(chunk) {
+    console.log('[-- SHUNK OF LENGTH ' + chunk.length + ' --]');
+    console.log(chunk.toString());
+  });
   console.log('Response: ', response);
 }
 
